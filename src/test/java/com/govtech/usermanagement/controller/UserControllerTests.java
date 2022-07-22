@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  */
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = UserController.class)
-public class UserControllerTests {
+class UserControllerTests {
 
     @Autowired
     private MockMvc mockMvc;

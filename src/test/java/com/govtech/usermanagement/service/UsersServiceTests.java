@@ -29,7 +29,7 @@ import static org.mockito.ArgumentMatchers.*;
  * @author xdebugger
  */
 @ExtendWith(MockitoExtension.class)
-public class UsersServiceTests {
+class UsersServiceTests {
 
     @Mock
     private UsersRepository usersRepository;
@@ -87,12 +87,12 @@ public class UsersServiceTests {
     }
 
     @Test
-    void processUploadFile_FailureTest() {
+    void processUploadFile_FailureTest() throws IOException {
         Resource resource = new ClassPathResource("user_failure_test.csv");
         assertNotNull(resource);
 
+        MockMultipartFile file = new MockMultipartFile(resource.getFilename(), resource.getInputStream());
         Exception exception = assertThrows(CommonRuntimeException.class, () -> {
-            MockMultipartFile file = new MockMultipartFile(resource.getFilename(), resource.getInputStream());
             usersService.processUploadFile(file);
         });
 
